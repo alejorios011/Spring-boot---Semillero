@@ -1,5 +1,6 @@
 package com.softlond.banco.controllers;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,10 +8,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import com.softlond.banco.models.User;
 import com.softlond.banco.responses.Response;
@@ -30,6 +28,16 @@ public class UserController {
         headers.add("Content-Type", "application/json");
 
         return new ResponseEntity<Response>(response, headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/findUser")
+    public ResponseEntity<User> getUserByDocument(@RequestParam String document){
+        User userFound = userService.findUserByDocument(document);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json");
+
+        return  new ResponseEntity<User>(userFound, headers, HttpStatus.OK);
     }
 
     @PostMapping("")

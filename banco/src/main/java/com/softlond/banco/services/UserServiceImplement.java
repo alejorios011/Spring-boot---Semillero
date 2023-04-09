@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
 import com.softlond.banco.models.User;
@@ -42,7 +45,7 @@ public class UserServiceImplement implements UserService {
     }
 
     @Override
-    public void update(String id, Object object) {
+    public void update(String document, Object object) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
@@ -63,5 +66,9 @@ public class UserServiceImplement implements UserService {
         }
         return new Response(message, usersFound);
     }
-    
+
+    @Override
+    public User findUserByDocument(String document){
+        return  userRepository.findUserByDocument(document);
+    }
 }
