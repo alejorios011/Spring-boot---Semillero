@@ -1,0 +1,11 @@
+# #Local MongoDB config
+spring:
+  data:
+    mongodb:
+      database: restaurant
+      host: localhost
+      port: 27017
+
+#App config
+server:
+  port: 8081
